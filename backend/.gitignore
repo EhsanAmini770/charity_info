@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+package-lock.json
+
+# Logs
+logs
+*.log
+# uploads
+uploads/*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+
+# Directory for generated files
+public/*
+!public/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

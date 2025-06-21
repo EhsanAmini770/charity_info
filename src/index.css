@@ -1,0 +1,310 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 150 30% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 150 30% 98%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 142 43% 46%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 143 36% 40%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 150 16% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 42 92% 60%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 142 43% 46%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar colors */
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 142 43% 46%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 42 92% 60%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 41%;
+    --sidebar-ring: 142 43% 46%;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Table Enhancements */
+@layer components {
+  .enhanced-table {
+    @apply w-full border-collapse rounded-lg overflow-hidden shadow-sm;
+  }
+
+  .enhanced-table thead {
+    @apply bg-charity-primary text-white;
+  }
+
+  .enhanced-table th {
+    @apply px-6 py-3 text-left text-sm font-semibold tracking-wider;
+  }
+
+  .enhanced-table tbody tr {
+    @apply transition-colors hover:bg-charity-muted border-b border-gray-200;
+  }
+
+  .enhanced-table td {
+    @apply px-6 py-4 whitespace-nowrap text-sm;
+  }
+
+  .enhanced-table tr:last-child {
+    @apply border-b-0;
+  }
+
+  /* Toast/Alert Enhancements */
+  .toast-success {
+    @apply bg-charity-success text-white border-2 border-charity-success/30 shadow-xl;
+  }
+
+  .toast-error {
+    @apply bg-charity-destructive text-white border-2 border-charity-destructive/30 shadow-xl;
+  }
+
+  .toast-warning {
+    @apply bg-charity-warning text-white border-2 border-charity-warning/30 shadow-xl;
+  }
+
+  .toast-info {
+    @apply bg-charity-info text-white border-2 border-charity-info/30 shadow-xl;
+  }
+}
+
+/* Enhanced Toast Visibility */
+[data-radix-toast-viewport] {
+  pointer-events: none;
+}
+
+[data-radix-toast-root] {
+  pointer-events: auto;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  animation: toast-slide-in 0.3s ease forwards;
+}
+
+@keyframes toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modern Masonry Grid for Gallery */
+.masonry-grid {
+  column-count: 3;
+  column-gap: 20px;
+  width: 100%;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  display: block;
+  background-color: #f8f8f8;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+.masonry-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Image hover effect */
+.masonry-item img {
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.masonry-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Loading animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.masonry-item.loaded {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@media (max-width: 768px) {
+  .masonry-grid {
+    column-count: 2;
+    column-gap: 15px;
+  }
+
+  .masonry-item {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .masonry-grid {
+    column-count: 1;
+  }
+}
+
+/* Additional styles for better image display */
+.masonry-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* News Grid */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.news-grid-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.news-grid-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Ensure consistent card heights */
+.news-grid .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* News Images Grid - Similar to Gallery */
+.news-images-grid {
+  column-count: 3;
+  column-gap: 24px;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.news-image-item {
+  break-inside: avoid;
+  margin-bottom: 24px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.news-image-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 1024px) {
+  .news-images-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .news-images-grid {
+    column-count: 1;
+  }
+}
+
+/* Loading animation for news items */
+@keyframes newsItemFadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.news-grid-item.loaded {
+  animation: newsItemFadeIn 0.6s ease forwards;
+}
+
+/* Enhanced button styles */
+@layer components {
+  .btn-primary {
+    @apply bg-charity-primary text-white hover:bg-charity-secondary transition-colors duration-200 rounded-md px-4 py-2 font-medium;
+  }
+
+  .btn-secondary {
+    @apply bg-charity-light text-charity-dark hover:bg-gray-200 transition-colors duration-200 rounded-md px-4 py-2 font-medium;
+  }
+
+  .btn-accent {
+    @apply bg-charity-accent text-charity-dark hover:bg-amber-500 transition-colors duration-200 rounded-md px-4 py-2 font-medium;
+  }
+
+  .btn-destructive {
+    @apply bg-charity-destructive text-white hover:bg-red-600 transition-colors duration-200 rounded-md px-4 py-2 font-medium;
+  }
+
+  /* Form input enhancements */
+  .enhanced-input {
+    @apply px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-charity-primary focus:border-transparent transition-colors duration-200;
+  }
+
+  /* Card enhancements */
+  .enhanced-card {
+    @apply bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .enhanced-card-header {
+    @apply px-6 py-4 border-b border-gray-200 bg-charity-muted;
+  }
+
+  .enhanced-card-body {
+    @apply px-6 py-4;
+  }
+
+  .enhanced-card-footer {
+    @apply px-6 py-4 bg-charity-muted border-t border-gray-200;
+  }
+}
